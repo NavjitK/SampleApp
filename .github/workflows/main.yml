@@ -41,7 +41,7 @@ jobs:
      #    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 393709411786.dkr.ecr.us-east-1.amazonaws.com
       
 
-    - name: Push Docker image with Trivy scan results as a tag
-      run: |
-        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA $ECR_REGISTRY/$ECR_REPOSITORY:trivy-scan-$GITHUB_SHA
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:trivy-scan-$GITHUB_SHA
+    # - name: Push Docker image with Trivy scan results as a tag
+    #   run: |
+    #     docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA $ECR_REGISTRY/$ECR_REPOSITORY:trivy-scan-$GITHUB_SHA
+    #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:trivy-scan-$GITHUB_SHA
