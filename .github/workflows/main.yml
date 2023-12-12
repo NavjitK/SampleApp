@@ -31,14 +31,14 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: '393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:${{ github.sha }}'
+        image-ref: '393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest'
         format: 'sarif'
         output: 'trivy-results.sarif'
 
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'trivy-results.sarif'
+    # - name: Upload Trivy scan results to GitHub Security tab
+    #   uses: github/codeql-action/upload-sarif@v2
+    #   with:
+    #     sarif_file: 'trivy-results.sarif'
 
     
     # - name: Install Trivy
