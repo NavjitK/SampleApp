@@ -37,7 +37,7 @@ jobs:
     - name: Scan ECR Image
       run: |
         ECR_URI="39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest"
-        trivy image -a "$ECR_URI"
+        trivy image "$ECR_URI"
         
     # - name: Trivy Scan
     #   uses: aquasecurity/trivy-action@master
