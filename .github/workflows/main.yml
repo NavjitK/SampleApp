@@ -34,7 +34,7 @@ jobs:
     #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA
 
     - name: Trivy Scan
-      uses: aquasecurity/trivy-action@v2
+      uses: aquasecurity/trivy-action@latest
       with:
         image-ref: '${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest'
         format: 'table'
