@@ -31,7 +31,7 @@ jobs:
     - name: Run Trivy scan
       run: |
         docker pull aquasec/trivy
-        docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --severity HIGH,CRITICAL --exit-code 1 39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
+        docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --exit-code 1 39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
 
     # - name: Install Trivy
     #   run: |
