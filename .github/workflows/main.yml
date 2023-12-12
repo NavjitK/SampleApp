@@ -29,7 +29,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: Run Trivy scan
-      run: docker run --rm -v $(pwd):/workdir aquasec/trivy ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/sample-app:latest
+      run: docker run --rm -v $(pwd):/workdir aquasec/trivy 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
         # run: |
         # docker pull aquasec/trivy
         # docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy 39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
