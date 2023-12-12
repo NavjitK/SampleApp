@@ -30,8 +30,8 @@ jobs:
 
     - name: Build, tag, and push Docker image to ECR
       run: |
-        docker build -t sample-app .
-        docker push 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
+        docker build -t sample-app/sample_iamge .
+        docker push 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample_image:latest
         
     - name: Trivy Scan
       uses: aquasecurity/trivy-action@master
