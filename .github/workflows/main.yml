@@ -34,6 +34,10 @@ jobs:
         image-ref: '393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest'
         format: 'table'
         # output: 'trivy-results.sarif'
+      env:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
     # - name: Upload Trivy scan results to GitHub Security tab
     #   uses: github/codeql-action/upload-sarif@v2
