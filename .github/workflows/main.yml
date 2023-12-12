@@ -28,12 +28,19 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    - name: Run Trivy scan
-      run: docker run --rm -v $PWD:/workdir aquasec/trivy 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample_image:latest
-        # run: |
-        # docker pull aquasec/trivy
-        # docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy 39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: '393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:${{ github.sha }}'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
 
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    
     # - name: Install Trivy
     #   run: |
     #     wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.tar.gz
