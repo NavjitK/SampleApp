@@ -28,7 +28,6 @@ jobs:
     #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:sample-app .
     #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA
 
-
     - name: Build, tag, and push Docker image to ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
