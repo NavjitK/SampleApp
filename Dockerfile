@@ -1,7 +1,7 @@
-FROM node:carbon
-RUN mkdir -p /usr/local/helloworld/
-COPY helloworld.js package.json /usr/local/helloworld/
-WORKDIR /usr/local/helloworld/
-RUN npm install --production
+FROM node:14
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install 
+COPY . .
 EXPOSE 3000
-ENTRYPOINT [ "node", "helloworld.js" ]
+CMD ["node", "index.js"]
