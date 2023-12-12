@@ -28,12 +28,12 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
-    - name: Trivy Scan
-      uses: aquasecurity/trivy-action@master
-      with:
-        # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 393709411786.dkr.ecr.us-east-1.amazonaws.com
-        image-ref: '393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest'
-        format: 'table'
+    # - name: Trivy Scan
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 393709411786.dkr.ecr.us-east-1.amazonaws.com
+    #     image-ref: '393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest'
+    #     format: 'table'
 
      # - name: Log in to ECR
      #  id: login-ecr
