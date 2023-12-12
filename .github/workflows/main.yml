@@ -27,6 +27,12 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Install Trivy
+      run: |
+        wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.tar.gz
+        tar zxvf trivy_0.18.3_Linux-64bit.tar.gz
+        sudo mv trivy /usr/local/bin/
         
     # - name: Trivy Scan
     #   uses: aquasecurity/trivy-action@master
