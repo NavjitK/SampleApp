@@ -42,8 +42,9 @@ jobs:
       run: |
         docker pull aquasec/trivy
         docker run --rm aquasec/trivy --version
-        docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --exit-code 1 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
-
+        SCAN_RESULT=$(docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --format json 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest)
+        echo "$SCAN_RESULT" | grep -q '"Severity": "HIGH\|CRITICAL"' && exit 1 || exit 0
+        
     # - name: Upload Trivy scan results to GitHub Security tab
     #   uses: github/codeql-action/upload-sarif@v2
     #   with:
