@@ -28,16 +28,21 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    - name: Install Trivy
+    - name: Run Trivy scan
       run: |
-        wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.tar.gz
-        tar zxvf trivy_0.18.3_Linux-64bit.tar.gz
-        sudo mv trivy /usr/local/bin/
+        docker pull aquasec/trivy
+        docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --severity HIGH,CRITICAL --exit-code 1 39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
 
-    - name: Scan ECR Image
-      run: |
-        ECR_URI="39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest"
-        trivy image "$ECR_URI"
+    # - name: Install Trivy
+    #   run: |
+    #     wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.tar.gz
+    #     tar zxvf trivy_0.18.3_Linux-64bit.tar.gz
+    #     sudo mv trivy /usr/local/bin/
+
+    # - name: Scan ECR Image
+    #   run: |
+    #     ECR_URI="39370941178.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest"
+    #     trivy image "$ECR_URI"
         
     # - name: Trivy Scan
     #   uses: aquasecurity/trivy-action@master
