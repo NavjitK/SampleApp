@@ -31,7 +31,7 @@ jobs:
     - name: Build, tag, and push Docker image to ECR
       run: |
         docker build -t sample-app .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
 
     - name: Trivy Scan
       uses: aquasecurity/trivy-action@master
