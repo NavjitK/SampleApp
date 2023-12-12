@@ -41,7 +41,8 @@ jobs:
     - name: Run Trivy scan
       run: |
         docker pull aquasec/trivy
-        docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --severity HIGH,CRITICAL --exit-code 1 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
+        docker run --rm aquasec/trivy --version
+        docker run --rm -v ${{ github.workspace }}:/workdir aquasec/trivy --exit-code 1 393709411786.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
 
     # - name: Upload Trivy scan results to GitHub Security tab
     #   uses: github/codeql-action/upload-sarif@v2
